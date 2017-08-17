@@ -1,7 +1,21 @@
 <?php
 
-$router = $di->getRouter();
+/* @var $router \Phalcon\Mvc\Router */
+$router = $di->getShared('router', [false]);
 
-// Define your routes here
+$router->add("/", [
+    'controller' => 'index',
+    'action' => 'index',
+])->setName("homepage");
+
+$router->add("/rejestracja", [
+    'controller' => 'index',
+    'action' => 'register',
+])->setName("register");
+
+$router->add("/pomoc", [
+    'controller' => 'index',
+    'action' => 'help',
+])->setName("help");
 
 $router->handle();

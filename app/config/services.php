@@ -1,5 +1,6 @@
 <?php
 
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\Url as UrlResolver;
@@ -36,6 +37,7 @@ $di->setShared('view', function () {
     $view = new View();
     $view->setDI($this);
     $view->setViewsDir($config->application->viewsDir);
+    $view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
 
     $view->registerEngines([
         '.volt' => function ($view) {
@@ -45,7 +47,8 @@ $di->setShared('view', function () {
 
             $volt->setOptions([
                 'compiledPath' => $config->application->cacheDir,
-                'compiledSeparator' => '_'
+                'compiledSeparator' => '_',
+                'compileAlways' => true
             ]);
 
             return $volt;
@@ -80,6 +83,19 @@ $di->setShared('db', function () {
 
     return $connection;
 });
+
+$di->set(
+    'dispatcher',
+    function () {
+        $dispatcher = new Dispatcher();
+
+        $dispatcher->setDefaultNamespace(
+            'ASI\Controllers'
+        );
+
+        return $dispatcher;
+    }
+);
 
 
 /**

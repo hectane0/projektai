@@ -1,0 +1,29 @@
+#register-form {
+    padding: 20px 100px;
+    text-align: start;
+}
+
+#register-form button {
+    float: right;
+}
+
+#register-footer {
+    background-color: #405ff0;
+    color: whitesmoke;
+}
+
+#mainNav.navbar-background {
+    background-color: #405ff0;
+}
+
+.error {
+    color: red;
+}
+
+.successMessage {
+    color: green;
+}
+
+.errorMessage {
+    color: red;
+}
