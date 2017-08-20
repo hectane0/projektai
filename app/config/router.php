@@ -18,4 +18,10 @@ $router->add("/pomoc", [
     'action' => 'help',
 ])->setName("help");
 
+$router->add("/ajax/login", [
+    'controller' => 'ajax',
+    'action' => 'checkLogin',
+])->setName("ajax-login");
+
+
 $router->handle();

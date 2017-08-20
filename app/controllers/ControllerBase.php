@@ -11,5 +11,6 @@ class ControllerBase extends Controller
     {
         Tag::setTitle("ASII QUIZ");
         $this->assets->addCss('css/main.css');
+        $this->assets->addJs('js/main.js');
     }
 }

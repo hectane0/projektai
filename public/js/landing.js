@@ -61,4 +61,27 @@
         }
     });
 
+$("#modal-log-in").click(function () {
+    var form = $("#login-modal-form");
+
+    $.ajax({
+        url: "/ajax/login",
+        method: "POST",
+        dataType: "json",
+        cache: false,
+        data: {email: form.find("#login-email").val(), password: form.find("#login-password").val()},
+
+        success: function(result){
+            console.log(result)
+            if (result.success) {
+                window.location.replace("http://www.google.com");
+            }
+            else {
+                $("#login-response").html(result.message);
+            }
+        }
+    });
+
+})
+
 })(jQuery); // End of use strict

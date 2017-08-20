@@ -4,9 +4,21 @@
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix navbar-background">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
                 {{ link_to(["for": "homepage"], "ASI<sup>2</sup> QUIZ", "class" : "navbar-brand") }}
             </div>
-        </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="page-scroll" href="#">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
     </nav>
 
     <section>
@@ -51,8 +63,8 @@
                                 {% endfor %}
                             </div>
                             <div class="form-group">
-                                {{ link_to(["for": "homepage"], "Powrót", "class": "btn btn-warning btn-xl") }}
-                                <button class="btn btn-primary btn-xl">Rejestracja</button>
+                                <div class="button">{{ link_to(["for": "homepage"], "Powrót", "class": "btn btn-warning btn-xl") }}</div>
+                                <div class="button"><button class="btn btn-primary btn-xl">Rejestracja</button></div>
                             </div>
                         </form>
                     </div>

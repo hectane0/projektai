@@ -49,6 +49,9 @@ class User extends Model
         return boolval($user->id);
     }
 
+    /**
+     * @return User
+     */
     public static function getByEmail($email) {
         return self::findFirst(["email = '$email'"]);
     }

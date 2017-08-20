@@ -29,7 +29,7 @@
                             {{ link_to(["for": "register"], "Rejestracja") }}
                         </li>
                         <li>
-                            <a class="page-scroll" href="#">Login</a>
+                            <a class="page-scroll cpointer" data-toggle="modal" data-target="#loginModal">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="header-content-inner">
                     <h1 id="homeHeading">Najlepszy sposób na przeprowadzenie quizu online</h1>
                     <hr>
-                    <p>ASI<sup>2</sup> to aplikacja pozwalająca na szybkie i łątwe tworzenie oraz przeprowadzanie quizów z niezwykle ważnych przedmiotów: Aplikacji internetowych oraz systemów wzpomagania decyzji!</p>
+                    <p>ASI<sup>2</sup> to aplikacja pozwalająca na szybkie i łatwe tworzenie oraz przeprowadzanie quizów z niezwykle ważnych przedmiotów: Aplikacji internetowych oraz systemów wzpomagania decyzji!</p>
                     <a href="#about" class="btn btn-primary btn-xl page-scroll">Więcej</a>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                         <h2 class="section-heading">Nasze motywacje</h2>
                         <hr class="light">
                         <p class="text-faded">Aplikacje internetoww/Sztuczna inteligencja QUIZ<br>(W skróce AISI, w jeszcze większym skrócie ASI<sup>2</sup>) to jedynie prosta aplikacja powstała z&nbsp;konieczności zaliczenia przedmiotu. Jednak jeśli chcesz wybróbować jej ograniczone możliwości to zapraszamy!</p>
-                        <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Zaloguj!</a>
+                        <a class="page-scroll btn btn-default btn-xl sr-button cpointer" data-toggle="modal" data-target="#loginModal">Zaloguj!</a>
                     </div>
                 </div>
             </div>
@@ -230,4 +230,6 @@
                 </div>
             </div>
         </section>
+
+    {{ partial('partials/loginModal') }}
 {% endblock %}

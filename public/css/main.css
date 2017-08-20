@@ -7,13 +7,24 @@
     float: right;
 }
 
+#register-form .button {
+    display: inline;
+}
+
+@media (max-width: 768px) {
+    #register-form .btn {
+        float: right;
+        margin: 3px;
+    }
+}
+
 #register-footer {
-    background-color: #405ff0;
+    background-color: #222222;
     color: whitesmoke;
 }
 
 #mainNav.navbar-background {
-    background-color: #405ff0;
+    background-color: #222222;
 }
 
 .error {
@@ -26,4 +37,21 @@
 
 .errorMessage {
     color: red;
+}
+
+.cpointer {
+    cursor: pointer;
+}
+
+.modal-open {
+    overflow: hidden;
+    padding-right: 0 !important;
+}
+
+.dnone {
+    display: none;
+}
+
+.spinner {
+    margin-left: 5px;
 }
