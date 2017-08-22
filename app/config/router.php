@@ -13,15 +13,19 @@ $router->add("/rejestracja", [
     'action' => 'register',
 ])->setName("register");
 
-$router->add("/pomoc", [
-    'controller' => 'index',
-    'action' => 'help',
-])->setName("help");
-
 $router->add("/ajax/login", [
     'controller' => 'ajax',
     'action' => 'checkLogin',
 ])->setName("ajax-login");
 
+$router->add("/admin/dashboard", [
+    'controller' => 'admin',
+    'action' => 'index',
+])->setName("admin-dashboard");
+
+$router->notFound([
+    'controller' => 'error',
+    'action' => 'error404',
+]);
 
 $router->handle();

@@ -15,6 +15,9 @@ class User extends Model
     public $email;
     public $password;
     public $createdAt;
+    public $roles;
+
+    const ROLE_ADMIN = 'admin';
 
     public function initialize()
     {
@@ -102,5 +105,19 @@ class User extends Model
     {
         $this->password = password_hash($newPassword, PASSWORD_BCRYPT);
         $this->update();
+    }
+
+    public function getDefaultPage()
+    {
+        if ($this->hasRole(self::ROLE_ADMIN)) {
+            return $this->getDI()->getShared('url')->get(['for' => 'admin-dashboard']);
+        }
+        return 'http://www.google.com';
+    }
+
+    public function hasRole($role)
+    {
+        $roles = explode(',', $this->roles);
+        return in_array($role, $roles);
     }
 }

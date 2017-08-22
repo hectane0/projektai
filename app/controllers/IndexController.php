@@ -11,7 +11,7 @@ class IndexController extends ControllerBase
     {
         parent::initialize();
         $this->assets->addCss('css/landing.css');
-        $this->assets->addJs('js/landing.js');
+        $this->assets->addJs('js/landing.js?v=3');
     }
 
 

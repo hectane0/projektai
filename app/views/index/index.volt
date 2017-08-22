@@ -112,10 +112,10 @@
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        Po co marnować papier?
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Ekolodzy będą Ci wdzięczni
                                     </div>
                                 </div>
                             </div>
@@ -127,10 +127,10 @@
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        Lorem
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Ipsum
                                     </div>
                                 </div>
                             </div>
@@ -142,55 +142,10 @@
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        Lorem
                                     </div>
                                     <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/4.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/5.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/6.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
+                                        Ipsum
                                     </div>
                                 </div>
                             </div>

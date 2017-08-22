@@ -13,4 +13,14 @@ class ControllerBase extends Controller
         $this->assets->addCss('css/main.css');
         $this->assets->addJs('js/main.js');
     }
+
+    public function show404($condition = true)
+    {
+        if ($condition) {
+            $this->dispatcher->forward([
+                'controller' => 'error',
+                'action' => 'error404',
+            ]);
+        }
+    }
 }

@@ -49,12 +49,13 @@
     $('.popup-gallery').magnificPopup({
         delegate: 'a',
         type: 'image',
-        tLoading: 'Loading image #%curr%...',
+        tLoading: 'Ładowanie obrazu #%curr%...',
         mainClass: 'mfp-img-mobile',
         gallery: {
             enabled: true,
             navigateByImgClick: true,
-            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+            preload: [0, 1], // Will preload 0 - before current, and 1 after the current image
+            tCounter: '%curr% z %total%'
         },
         image: {
             tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
@@ -72,12 +73,12 @@ $("#modal-log-in").click(function () {
         data: {email: form.find("#login-email").val(), password: form.find("#login-password").val()},
 
         success: function(result){
-            console.log(result)
             if (result.success) {
-                window.location.replace("http://www.google.com");
+                window.location.replace(result.redirect);
             }
             else {
                 $("#login-response").html(result.message);
+                $(".spinner").hide();
             }
         }
     });
