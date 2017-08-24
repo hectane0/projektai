@@ -10,7 +10,20 @@
         {{ assets.outputCss() }}
     </head>
     <body id="page-top" class="home">
-        {% block content %}{% endblock %}
+
+    <div id="throbber" style="display:none; min-height:120px;"></div>
+    <div id="noty-holder"></div>
+    <div id="wrapper">
+
+        {% block navbar %}{% endblock %}
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
         {% block extraJs %}{% endblock %}

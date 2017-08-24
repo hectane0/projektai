@@ -1,4 +1,4 @@
-{% extends 'index.volt' %}
+{% extends 'index_landing.volt' %}
 
 {% block extraHead %}
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -7,9 +7,7 @@
     <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block content %}
-
-{% endblock %}
+{% block content %}{% endblock %}
 
 {% block extraJs %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
