@@ -8,12 +8,7 @@
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
 
-            {% if session.get('user')['roles'] == 'admin'  %}
-                {{ partial('partials/dashboard/menuLeftAdmin') }}
-            {% else %}
-                {{ partial('partials/dashboard/menuLeft') }}
-            {% endif %}
-
+            {{ partial('partials/dashboard/menuProfile') }}
 
         </div>
     </nav>

@@ -24,6 +24,7 @@ class AjaxController extends ControllerBase
 
         if ($user) {
             if ($user->isPasswordCorrect($password)) {
+                $user->login();
                 return json_encode(["success" => true, "redirect" => $user->getDefaultPage()]);
             }
         }

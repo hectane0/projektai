@@ -2,7 +2,6 @@
 
 namespace ASI\Models\User;
 
-use ASI\Forms\RegisterForm;
 use Phalcon\Mvc\Model;
 use Phalcon\Di;
 
@@ -34,6 +33,9 @@ class User extends Model
         return parent::find($parameters);
     }
 
+    /**
+     * @return User
+     */
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
@@ -52,9 +54,6 @@ class User extends Model
         return boolval($user->id);
     }
 
-    /**
-     * @return User
-     */
     public static function getByEmail($email) {
         return self::findFirst(["email = '$email'"]);
     }
@@ -71,6 +70,11 @@ class User extends Model
     {
         $user = $this->toArray($this);
         $this->getDI()->getShared('session')->set('user', $user);
+    }
+
+    public function logout()
+    {
+        $this->getDI()->getShared('session')->destroy('user');
     }
 
     public static function isLogged()
@@ -105,6 +109,16 @@ class User extends Model
     {
         $this->password = password_hash($newPassword, PASSWORD_BCRYPT);
         $this->update();
+
+        return $this;
+    }
+
+    public function changeEmail($newEmail)
+    {
+        $this->email = $newEmail;
+        $this->update();
+
+        return $this;
     }
 
     public function getDefaultPage()
@@ -112,7 +126,7 @@ class User extends Model
         if ($this->hasRole(self::ROLE_ADMIN)) {
             return $this->getDI()->getShared('url')->get(['for' => 'admin-dashboard']);
         }
-        return 'http://www.google.com';
+        return $this->getDI()->getShared('url')->get(['for' => 'panel']);
     }
 
     public function hasRole($role)

@@ -22,6 +22,8 @@ class IndexController extends ControllerBase
 
     public function registerAction()
     {
+        $this->redirectIfLogged();
+
         $registerForm = new RegisterForm();
 
         if ($registerForm->isSubmittedAndValid()) {
@@ -35,6 +37,15 @@ class IndexController extends ControllerBase
             }
         }
         $this->view->setVar('registerForm', $registerForm);
+    }
+
+    public function logoutAction()
+    {
+        if ($user = User::getCurrentUser()) {
+            $user->logout();
+        }
+
+        return $this->response->redirect('/');
     }
 
 }

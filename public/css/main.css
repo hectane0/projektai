@@ -83,3 +83,7 @@
 .btn:focus {
     outline: none;
 }
+
+.aleft {
+    text-align: left;
+}

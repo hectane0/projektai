@@ -78,6 +78,7 @@ $("#modal-log-in").click(function () {
             }
             else {
                 $("#login-response").html(result.message);
+                $("#login-password").val('').focus();
                 $(".spinner").hide();
             }
         }
