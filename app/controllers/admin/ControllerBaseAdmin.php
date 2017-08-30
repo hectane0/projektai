@@ -1,12 +1,12 @@
 <?php
 
-namespace ASI\Controllers;
+namespace ASI\Controllers\Admin;
 
-use ASI\Forms\RegisterForm;
+use ASI\Controllers\ControllerBase;
 use ASI\Models\User\User;
 use Phalcon\Tag;
 
-class AdminController extends ControllerBase
+class ControllerBaseAdmin extends ControllerBase
 {
     public function beforeExecuteRoute()
     {
@@ -22,26 +22,4 @@ class AdminController extends ControllerBase
         $this->assets->addJs('js/admin.js');
         Tag::appendTitle(" - Admin");
     }
-
-
-    public function indexAction()
-    {
-
-    }
-
-    public function usersAction()
-    {
-        $users = User::find();
-
-        $this->view->setVar('users', $users);
-    }
-
-    public function userAction()
-    {
-        $id = $this->dispatcher->getParam('id');
-
-        var_dump($id);die;
-    }
-
 }
-

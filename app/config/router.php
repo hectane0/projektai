@@ -3,6 +3,8 @@
 /* @var $router \Phalcon\Mvc\Router */
 $router = $di->getShared('router', [false]);
 
+$router->setDefaultNamespace('ASI\Controllers');
+
 $router->add("/", [
     'controller' => 'index',
     'action' => 'index',
@@ -24,7 +26,8 @@ $router->add("/logout", [
 ])->setName("logout");
 
 $router->add("/admin/dashboard", [
-    'controller' => 'admin',
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'index',
     'action' => 'index',
 ])->setName("admin-dashboard");
 
@@ -54,17 +57,43 @@ $router->add("/profile/password", [
 ])->setName("profile-password");
 
 $router->add("/admin/users", [
-    'controller' => 'admin',
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'index',
     'action' => 'users',
 ])->setName("admin-users");
 
+$router->add("/admin/questions", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'questions',
+    'action' => 'index',
+])->setName("admin-questions");
+
+$router->add("/admin/questions/add", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'questions',
+    'action' => 'add',
+])->setName("admin-questions-add");
+
+$router->add("/admin/questions/edit/([0-9]+)", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'questions',
+    'action' => 'edit',
+    'id' => 1,
+])->setName("admin-questions-edit");
+
 $router->add("/admin/user/([0-9]+)", [
-    'controller' => 'admin',
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'index',
     'action' => 'user',
     'id' => 1,
 ])->setName("admin-user");
 
-$router->notFound[
+$router->add("/ajax/add-question", [
+    'controller' => 'ajax',
+    'action' => 'addQuestion',
+])->setName("ajax-questions-add");
+
+$router->notFound([
     'controller' => 'error',
     'action' => 'error404',
 ]);

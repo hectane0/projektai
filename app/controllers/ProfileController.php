@@ -4,7 +4,6 @@ namespace ASI\Controllers;
 
 use ASI\Forms\ChangeEmailForm;
 use ASI\Forms\ChangePasswordForm;
-use ASI\Forms\RegisterForm;
 use ASI\Models\User\User;
 use Phalcon\Tag;
 

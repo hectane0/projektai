@@ -2,7 +2,6 @@
 
 namespace ASI\Controllers;
 
-use ASI\Forms\RegisterForm;
 use ASI\Models\User\User;
 use Phalcon\Tag;
 

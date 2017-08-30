@@ -4,6 +4,10 @@ use Phalcon\Di\FactoryDefault;
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
 
+ini_set('xdebug.var_display_max_depth', -1);
+ini_set('xdebug.var_display_max_children', -1);
+ini_set('xdebug.var_display_max_data', -1);
+
 try {
 
     date_default_timezone_set('Europe/Warsaw');

@@ -2,7 +2,7 @@
 
 namespace ASI\Validators;
 
-use ASI\Models\User\User;
+use ASI\Models\User\Question;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator;
 use Phalcon\Validation\ValidatorInterface;
@@ -14,7 +14,7 @@ class EmailUsedValidator extends Validator implements ValidatorInterface
     {
         $date = $validation->getValue($attribute);
 
-        $user = User::getByEmail($date);
+        $user = Question::getByEmail($date);
 
         if (!$user) {
             return true;
