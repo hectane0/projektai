@@ -11,7 +11,9 @@ $(function(){
 
             success: function(result){
                 if (result.success) {
-
+                    updateLastQuestions();
+                    $("#result-success").html("Poprawnie dodano nowe pytanie");
+                    $("#question").focus();
                 }
                 else {
                     fillErrors(result.messages, form);
@@ -28,4 +30,17 @@ function fillErrors(messages, form) {
             form.find("#"+field).siblings(".error").html("").html(messages[field]);
         }
     }
+}
+
+function updateLastQuestions() {
+    $.ajax({
+        url: "/ajax/last-questions",
+        method: "POST",
+        cache: false,
+
+        success: function(result){
+            $("#new-question").find("input[type=text]").val("");
+            $("#last-questions").html(result);
+        }
+    });
 }

@@ -60,4 +60,26 @@ class Question extends Model
         return $question->id;
     }
 
+    public static function getLast($limit = 3)
+    {
+        return Question::find(
+            [
+                'order' => 'id desc',
+                'limit' => $limit,
+            ]
+        );
+    }
+
+    public function updateFromData($post)
+    {
+        $this->question = $post['question'];
+        $this->rightAnswer = $post['right-answer'];
+        $this->wrongAnswer1 = $post['wrong-answer1'];
+        $this->wrongAnswer2 = $post['wrong-answer2'];
+        $this->wrongAnswer3 = $post['wrong-answer3'];
+        $this->category = $post['category'];
+
+        $this->update();
+    }
+
 }

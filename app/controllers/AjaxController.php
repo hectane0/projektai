@@ -58,5 +58,20 @@ class AjaxController extends ControllerBase
 
         return $errors;
     }
+
+    public function lastQuestionsAction()
+    {
+        $questions = Question::getLast();
+
+        $this->view->pick('ajax/last-questions');
+        $this->view->setVar('questions', $questions);
+
+        $this->view->start();
+        $this->view->render('ajax', 'lastQuestions');
+        $this->view->finish();
+        $html = $this->view->getContent();
+
+        return $html;
+    }
 }
 

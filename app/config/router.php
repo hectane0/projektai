@@ -93,6 +93,11 @@ $router->add("/ajax/add-question", [
     'action' => 'addQuestion',
 ])->setName("ajax-questions-add");
 
+$router->add("/ajax/last-questions", [
+    'controller' => 'ajax',
+    'action' => 'lastQuestions',
+])->setName("ajax-last-questions");
+
 $router->notFound([
     'controller' => 'error',
     'action' => 'error404',

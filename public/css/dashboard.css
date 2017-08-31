@@ -141,3 +141,16 @@
 .navbar-brand {
     padding: 15px 15px;
 }
+
+.panel-footer span {
+    width:24.1555%;
+    display: inline-block;
+}
+
+#result-success {
+    color: green;
+}
+
+#last-questions  div.panel-body  p {
+    margin-bottom: 0;
+}
