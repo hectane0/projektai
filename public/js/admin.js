@@ -20,7 +20,13 @@ $(function(){
                 }
             }
         });
-    })
+    });
+
+    $(".select2").select2({
+        width: '100%',
+        placeholder: "Wybierz" ,
+    });
+
 });
 
 // Co tu się robi to ja nawet nie
@@ -39,7 +45,7 @@ function updateLastQuestions() {
         cache: false,
 
         success: function(result){
-            $("#new-question").find("input[type=text]").val("");
+            $("#new-question").find("input[type=text]").html("").val("");
             $("#last-questions").html(result);
         }
     });

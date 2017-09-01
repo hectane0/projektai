@@ -88,6 +88,37 @@ $router->add("/admin/user/([0-9]+)", [
     'id' => 1,
 ])->setName("admin-user");
 
+$router->add("/admin/quiz/add", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'quiz',
+    'action' => 'add',
+])->setName("admin-quiz-add-1");
+
+$router->add("/admin/quiz/add/step2", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'quiz',
+    'action' => 'addStep2',
+])->setName("admin-quiz-add-2");
+
+$router->add("/admin/quiz/add/step3", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'quiz',
+    'action' => 'addStep3',
+])->setName("admin-quiz-add-3");
+
+$router->add("/admin/quiz/add/finish", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'quiz',
+    'action' => 'finish',
+])->setName("admin-quiz-add-finish");
+
+$router->add("/admin/user/([0-9]+)", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'index',
+    'action' => 'user',
+    'id' => 1,
+])->setName("admin-user");
+
 $router->add("/ajax/add-question", [
     'controller' => 'ajax',
     'action' => 'addQuestion',

@@ -2,7 +2,7 @@
 
 namespace ASI\Validators;
 
-use ASI\Models\User\Question;
+use ASI\Models\User\User;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator;
 use Phalcon\Validation\ValidatorInterface;
@@ -14,7 +14,7 @@ class PasswordCorrectValidator extends Validator implements ValidatorInterface
     {
         $password = $validation->getValue($attribute);
 
-        $user = Question::getCurrentUser();
+        $user = User::getCurrentUser();
 
         if ($user->isPasswordCorrect($password)) {
             return true;

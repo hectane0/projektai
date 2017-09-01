@@ -47,6 +47,7 @@ class User extends Model
         $user->firstName = $data['first-name'];
         $user->lastName = $data['last-name'];
         $user->email = $data['email'];
+        $user->roles = 'student';
         $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
         $user->createdAt = date('Y-m-d H:i:s');
 

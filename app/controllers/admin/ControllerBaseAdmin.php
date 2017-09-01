@@ -10,8 +10,11 @@ class ControllerBaseAdmin extends ControllerBase
 {
     public function beforeExecuteRoute()
     {
-        $user = User::getCurrentUser();
-        $this->show404(!$user->hasRole(User::ROLE_ADMIN));
+        $this->show404(!User::isLogged());
+        if (User::isLogged() && $user = User::getCurrentUser()) {
+            $this->show404(!$user->hasRole(User::ROLE_ADMIN));
+        }
+
     }
 
     public function initialize()
