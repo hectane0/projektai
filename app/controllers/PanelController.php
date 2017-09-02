@@ -9,7 +9,6 @@ class PanelController extends ControllerBase
 {
     public function beforeExecuteRoute()
     {
-        $this->redirectIfLogged();
         $user = User::getCurrentUser();
         if ($user->hasRole(User::ROLE_ADMIN)) {
             $this->response->redirect($user->getDefaultPage());
@@ -21,7 +20,7 @@ class PanelController extends ControllerBase
         parent::initialize();
         $this->assets->addJs('js/dashboard.js');
         $this->assets->addCss('css/dashboard.css');
-        Tag::appendTitle(" - Admin");
+        Tag::appendTitle(" - Panel");
     }
 
 

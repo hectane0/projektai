@@ -2,6 +2,7 @@
 
 namespace ASI\Models\Quiz;
 
+use ASI\Models\QuizToUser\QuizToUser;
 use ASI\Models\User\User;
 use Phalcon\Di;
 use Phalcon\Mvc\Model;
@@ -58,6 +59,10 @@ class Quiz extends Model
         $quiz->userId = User::getCurrentUserId();
 
         $quiz->save();
+
+        if ($quiz->users) {
+            QuizToUser::add($quiz->id, $step3['users']);
+        }
 
         return $quiz;
 
