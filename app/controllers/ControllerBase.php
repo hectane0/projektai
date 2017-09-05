@@ -26,7 +26,7 @@ class ControllerBase extends Controller
                 'namespace'  => 'ASI\Controllers',
                 'controller' => 'error',
                 'action' => 'error404',
-            ]);
+            ]); die;
         }
     }
 

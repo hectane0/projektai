@@ -36,6 +36,27 @@ $router->add("/panel", [
     'action' => 'index',
 ])->setName("panel");
 
+$router->add("/panel/quiz/available", [
+    'controller' => 'panel',
+    'action' => 'available',
+])->setName("panel-quiz-available");
+
+$router->add("/panel/quiz/confirm/([0-9]+)", [
+    'controller' => 'panel',
+    'action' => 'confirm',
+    'id' => 1,
+])->setName("panel-quiz-confirm");
+
+$router->add("/panel/quiz/", [
+    'controller' => 'panel',
+    'action' => 'quiz',
+])->setName("panel-quiz");
+
+$router->add("/panel/quiz/finished", [
+    'controller' => 'panel',
+    'action' => 'finished',
+])->setName("panel-quiz-finished");
+
 $router->add("/profile", [
     'controller' => 'profile',
     'action' => 'index',

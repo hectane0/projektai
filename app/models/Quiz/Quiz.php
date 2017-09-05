@@ -19,6 +19,9 @@ class Quiz extends Model
     public $createdAt;
     public $userId;
 
+    const STATUS_PUBLIC = 'public';
+    const STATUS_INVITED = 'closed';
+
 
     public function initialize()
     {
@@ -66,5 +69,49 @@ class Quiz extends Model
 
         return $quiz;
 
+    }
+
+    public static function getById($id)
+    {
+        return self::findFirst($id);
+    }
+
+    public static function findByIds($ids)
+    {
+        $ids = "(".implode(",", $ids).")";
+
+        return self::find("id IN $ids");
+    }
+
+    public function isUserInvited($userId)
+    {
+        $quizToUser = QuizToUser::findFirst("quizId = '$this->id' AND userId = '$userId'");
+        return (empty($quizToUser) ? false : true);
+    }
+
+    public function canSolve($userId)
+    {
+        if ($this->category == self::STATUS_PUBLIC) {
+            if (Result::isDone($this->id, $userId)) {
+                return false;
+            }
+        }
+
+        if ($this->category == self::STATUS_INVITED) {
+            if (!$this->isUserInvited($userId)) {
+                return false;
+            }
+
+            if (Result::isDone($this->id, $userId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function start($userId) {
+        $result = Result::start($this->id, $userId);
+
+        
     }
 }
