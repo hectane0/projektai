@@ -10,6 +10,7 @@ class PanelController extends ControllerBase
 {
     public function beforeExecuteRoute()
     {
+        $this->redirectIfNotLogged();
         $user = User::getCurrentUser();
         if ($user->hasRole(User::ROLE_ADMIN)) {
             $this->response->redirect($user->getDefaultPage());
@@ -65,9 +66,8 @@ class PanelController extends ControllerBase
         }
         $this->show404(empty($quiz) || !$quiz->canSolve($userId));
 
-        $quiz->start($userId);
+        $questions = $quiz->start($userId);
 
+        $this->view->setVar('questions', $questions);
     }
-
 }
-

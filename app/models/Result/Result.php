@@ -1,6 +1,6 @@
 <?php
 
-namespace ASI\Models\Quiz;
+namespace ASI\Models\Result;
 
 use Phalcon\Mvc\Model;
 

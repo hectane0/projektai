@@ -2,7 +2,9 @@
 
 namespace ASI\Models\Quiz;
 
+use ASI\Models\Question\Question;
 use ASI\Models\QuizToUser\QuizToUser;
+use ASI\Models\Result\Result;
 use ASI\Models\User\User;
 use Phalcon\Di;
 use Phalcon\Mvc\Model;
@@ -110,8 +112,29 @@ class Quiz extends Model
     }
 
     public function start($userId) {
-        $result = Result::start($this->id, $userId);
+        Result::start($this->id, $userId);
 
-        
+        $ids = json_decode($this->questions);
+        $questions = Question::findByIds($ids);
+
+        $preparedQuestions = [];
+        $correctAnswers = [];
+
+        foreach ($questions as $question) {
+            $answers = [$question->rightAnswer, $question->wrongAnswer1, $question->wrongAnswer2, $question->wrongAnswer3];
+            shuffle($answers);
+            $preparedQuestions[] = ['id' => $question->id, 'question' => $question->question, 'answers' => $answers];
+            $correctAnswers[$question->id] = array_search($question->rightAnswer, $answers);
+        }
+
+        $sessionData = [
+            'start_time' => time(),
+            'correct_answers' => $correctAnswers,
+            'questions' => $preparedQuestions
+        ];
+
+        Di::getDefault()->getShared('session')->set('current_quiz', $sessionData);
+
+        return $preparedQuestions;
     }
 }

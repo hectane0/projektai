@@ -9,6 +9,11 @@ use Phalcon\Tag;
 
 class ProfileController extends ControllerBase
 {
+    public function beforeExecuteRoute()
+    {
+        $this->redirectIfNotLogged();
+    }
+
     public function initialize()
     {
         parent::initialize();

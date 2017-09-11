@@ -82,4 +82,11 @@ class Question extends Model
         $this->update();
     }
 
+    public static function findByIds($ids)
+    {
+        $ids = "(".implode(",", $ids).")";
+
+        return self::find("id IN $ids");
+    }
+
 }

@@ -33,7 +33,14 @@ class ControllerBase extends Controller
     public function redirectIfLogged()
     {
         if ($user = User::getCurrentUser()) {
-            $this->response->redirect($user->getDefaultPage());
+            $this->response->redirect($user->getDefaultPage())->send();
+        }
+    }
+
+    public function redirectIfNotLogged()
+    {
+        if (!User::isLogged()) {
+            $this->response->redirect(['for' => 'homepage'])->send();
         }
     }
 }
