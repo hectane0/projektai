@@ -2,6 +2,7 @@
 
 /* @var $router \Phalcon\Mvc\Router */
 $router = $di->getShared('router', [false]);
+$router->removeExtraSlashes(true);
 
 $router->setDefaultNamespace('ASI\Controllers');
 
@@ -47,7 +48,7 @@ $router->add("/panel/quiz/confirm/([0-9]+)", [
     'id' => 1,
 ])->setName("panel-quiz-confirm");
 
-$router->add("/panel/quiz/", [
+$router->add("/panel/quiz", [
     'controller' => 'panel',
     'action' => 'quiz',
 ])->setName("panel-quiz");
@@ -56,6 +57,11 @@ $router->add("/panel/quiz/finished", [
     'controller' => 'panel',
     'action' => 'finished',
 ])->setName("panel-quiz-finished");
+
+$router->add("/panel/quiz/finish", [
+    'controller' => 'panel',
+    'action' => 'finish',
+])->setName("panel-quiz-finish");
 
 $router->add("/profile", [
     'controller' => 'profile',

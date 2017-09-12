@@ -14,8 +14,13 @@ class Quiz
 
         $sql = "SELECT id FROM quiz WHERE type = 'public'";
         $ids = Di::getDefault()->getShared('db')->fetchAll($sql);
-
         $ids = array_map('current', $ids);
+
+        $sql = "SELECT quizId FROM result WHERE userId = $userId AND status = 'done'";
+        $quizzesId = Di::getDefault()->getShared('db')->fetchAll($sql);
+        $quizzesId = array_map('current', $quizzesId);
+
+        $ids = array_diff($ids, $quizzesId);
 
         if (!$ids) {
             return null;
@@ -44,26 +49,14 @@ class Quiz
 
     public static function getCountNewPublicQuizzes($userId = null)
     {
-        if ($userId == null) {
-            $userId = User::getCurrentUserId();
-        }
-
-        $sql = "SELECT COUNT(*) AS count FROM quiz WHERE type = 'public'";
-        $result = Di::getDefault()->getShared('db')->fetchOne($sql);
-
-        return intval($result['count']);
+        $number = self::getNewPublicQuizzes($userId);
+        return count($number);
 
     }
 
     public static function getCountNewInvitedQuizzes($userId = null)
     {
-        if ($userId == null) {
-            $userId = User::getCurrentUserId();
-        }
-
-        $sql = "SELECT COUNT(*) AS count FROM quizToUser WHERE userId = $userId AND status = 'new'";
-        $result = Di::getDefault()->getShared('db')->fetchOne($sql);
-
-        return intval($result['count']);
+        $number = self::getNewInvitedQuizzes($userId);
+        return count($number);
     }
 }

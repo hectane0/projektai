@@ -93,13 +93,13 @@ class Quiz extends Model
 
     public function canSolve($userId)
     {
-        if ($this->category == self::STATUS_PUBLIC) {
+        if ($this->type == self::STATUS_PUBLIC) {
             if (Result::isDone($this->id, $userId)) {
                 return false;
             }
         }
 
-        if ($this->category == self::STATUS_INVITED) {
+        if ($this->type == self::STATUS_INVITED) {
             if (!$this->isUserInvited($userId)) {
                 return false;
             }
@@ -128,6 +128,7 @@ class Quiz extends Model
         }
 
         $sessionData = [
+            'id' => $this->id,
             'start_time' => time(),
             'correct_answers' => $correctAnswers,
             'questions' => $preparedQuestions

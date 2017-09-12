@@ -11,6 +11,9 @@ class QuizToUser extends Model
     public $userId;
     public $status;
 
+    const STATUS_NEW = 'new';
+    const STATUS_DONE = 'done';
+
     public function initialize()
     {
         $this->setSchema("asi");
@@ -43,6 +46,11 @@ class QuizToUser extends Model
 
             $entry->save();
         }
+    }
+
+    public static function get($userId, $quizId)
+    {
+        return self::findFirst("quizId = '$quizId' AND userId = '$userId'");
     }
 
 }

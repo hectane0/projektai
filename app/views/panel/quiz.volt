@@ -9,6 +9,7 @@
 </div>
 
 <div id="first-slider">
+    <form action="{{ url(["for": "panel-quiz-finish"]) }}" method="post">
     <div id="carousel-example-generic" class="carousel slide carousel-fade">
         <ol class="carousel-indicators">
 
@@ -17,7 +18,7 @@
             {% endfor %}
         </ol>
 
-        <form method="post">
+
         <div class="carousel-inner" role="listbox">
             {% for question in questions %}
             <div class="item {% if loop.first %}active{% endif %} slide{{ loop.index }}">
@@ -38,7 +39,7 @@
             </div>
             {% endfor %}
         </div>
-        </form>
+
         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
             <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
         </a>
@@ -46,6 +47,12 @@
             <i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
         </a>
     </div>
+
+        <div class="text-center quiz-button-box">
+            <button class="btn btn-xl btn-primary quiz-button" type="submit">Zakończ</button>
+        </div>
+
+    </form>
 </div>
 
 

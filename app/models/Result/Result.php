@@ -12,6 +12,7 @@ class Result extends Model
     public $startAt;
     public $status;
     public $result;
+    public $finishedAt;
 
     const STATUS_IN_PROGRESS = 'in_progress';
     const STATUS_DONE = 'done';
@@ -41,7 +42,7 @@ class Result extends Model
 
     public static function isDone($quizId, $userId)
     {
-        $result = self::findFirst("quizId = '$quizId' AND userId = '$userId'");
+        $result = self::findFirst("quizId = '$quizId' AND userId = '$userId' AND status = 'done'");
         return (empty($result) ? false : true);
     }
 
@@ -57,6 +58,11 @@ class Result extends Model
         $result->save();
 
         return $result;
+    }
+
+    public static function get($userId, $quizId)
+    {
+        return self::findFirst("quizId = '$quizId' AND userId = '$userId'");
     }
 
 }

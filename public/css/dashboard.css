@@ -338,3 +338,11 @@
 .question-box .answers-box {
     text-align: center;
 }
+
+.quiz-button-box {
+    padding: 10px;
+}
+
+.quiz-button {
+    font-size: 18px;
+}

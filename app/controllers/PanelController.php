@@ -2,6 +2,8 @@
 
 namespace ASI\Controllers;
 
+use ASI\Models\QuizToUser\QuizToUser;
+use ASI\Models\Result\Result;
 use ASI\Models\User\Quiz;
 use ASI\Models\User\User;
 use Phalcon\Tag;
@@ -68,6 +70,39 @@ class PanelController extends ControllerBase
 
         $questions = $quiz->start($userId);
 
+
         $this->view->setVar('questions', $questions);
+    }
+
+    public function finishAction()
+    {
+        $currentQuiz = $this->session->get('current_quiz', null);
+        $this->show404(empty($currentQuiz) || empty($this->request->getPort()));
+
+
+        // @TODO: intersect źle działa :(
+        $score = count(array_intersect($this->request->getPost(), $currentQuiz['correct_answers']));
+        $scoreOn = count($this->session->get('current_quiz')['correct_answers']);
+
+        $rawScore = $score . "/" . $scoreOn;
+
+        $result = Result::get(User::getCurrentUserId(), $currentQuiz['id']);
+        $this->show404(empty($result));
+
+        $result->status = Result::STATUS_DONE;
+        $result->result = $rawScore;
+        $result->finishedAt = date('Y-m-d H:i:s');
+        $result->save();
+
+        $quizToUser = QuizToUser::get(User::getCurrentUserId(), $currentQuiz['id']);
+        if (!empty($quizToUser)) {
+            $quizToUser->status = QuizToUser::STATUS_DONE;
+            $quizToUser->save();
+        }
+
+        $this->session->remove('current_quiz');
+
+        $this->view->setVar('score', $rawScore);
+        $this->view->pick('panel/finish');
     }
 }
