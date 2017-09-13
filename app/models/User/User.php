@@ -2,10 +2,10 @@
 
 namespace ASI\Models\User;
 
-use Phalcon\Mvc\Model;
+use ASI\Models\ModelBase;
 use Phalcon\Di;
 
-class User extends Model
+class User extends ModelBase
 {
 
     public $id;
@@ -17,11 +17,6 @@ class User extends Model
     public $roles;
 
     const ROLE_ADMIN = 'admin';
-
-    public function initialize()
-    {
-        $this->setSchema("asi");
-    }
 
     public function getSource()
     {

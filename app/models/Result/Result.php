@@ -2,11 +2,11 @@
 
 namespace ASI\Models\Result;
 
+use ASI\Models\ModelBase;
 use ASI\Models\User\User;
 use Phalcon\Di;
-use Phalcon\Mvc\Model;
 
-class Result extends Model
+class Result extends ModelBase
 {
 
     public $userId;
@@ -20,10 +20,6 @@ class Result extends Model
     const STATUS_IN_PROGRESS = 'in_progress';
     const STATUS_DONE = 'done';
 
-    public function initialize()
-    {
-        $this->setSchema("asi");
-    }
 
     public function getSource()
     {
@@ -74,7 +70,7 @@ class Result extends Model
             $userId = User::getCurrentUserId();
         }
 
-        $sql = "SELECT * FROM asi.result AS result INNER JOIN asi.quiz AS quiz ON result.quizId = quiz.id WHERE result.status = 'done' AND result.userId = $userId";
+        $sql = "SELECT * FROM result AS result INNER JOIN quiz AS quiz ON result.quizId = quiz.id WHERE result.status = 'done' AND result.userId = $userId";
         $results = Di::getDefault()->getShared('db')->fetchAll($sql);
 
         return $results;
@@ -88,9 +84,9 @@ class Result extends Model
 
     public static function getFullResults()
     {
-        $sql = "SELECT asi.user.firstName, asi.user.lastName, asi.quiz.name, asi.result.result, asi.result.status, asi.result.finishedAt, asi.result.info FROM asi.result 
-                INNER JOIN asi.user ON asi.result.userId = asi.user.id 
-                INNER JOIN asi.quiz ON asi.result.quizId = asi.quiz.id;";
+        $sql = "SELECT user.firstName, user.lastName, quiz.name, result.result, result.status, result.finishedAt, result.info FROM result 
+                INNER JOIN user ON result.userId = user.id 
+                INNER JOIN quiz ON result.quizId = quiz.id;";
         $result = Di::getDefault()->getShared('db')->fetchAll($sql);
 
         return $result;

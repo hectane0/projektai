@@ -2,14 +2,14 @@
 
 namespace ASI\Models\Quiz;
 
+use ASI\Models\ModelBase;
 use ASI\Models\Question\Question;
 use ASI\Models\QuizToUser\QuizToUser;
 use ASI\Models\Result\Result;
 use ASI\Models\User\User;
 use Phalcon\Di;
-use Phalcon\Mvc\Model;
 
-class Quiz extends Model
+class Quiz extends ModelBase
 {
 
     public $id;
@@ -26,10 +26,6 @@ class Quiz extends Model
     const STATUS_INVITED = 'closed';
 
 
-    public function initialize()
-    {
-        $this->setSchema("asi");
-    }
 
     public function getSource()
     {

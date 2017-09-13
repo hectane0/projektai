@@ -2,10 +2,10 @@
 
 namespace ASI\Models\Question;
 
+use ASI\Models\ModelBase;
 use ASI\Models\User\User;
-use Phalcon\Mvc\Model;
 
-class Question extends Model
+class Question extends ModelBase
 {
 
     public $id;
@@ -18,11 +18,6 @@ class Question extends Model
     public $userId;
     public $createdAt;
 
-
-    public function initialize()
-    {
-        $this->setSchema("asi");
-    }
 
     public function getSource()
     {

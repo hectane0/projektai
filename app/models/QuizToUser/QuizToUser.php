@@ -2,9 +2,9 @@
 
 namespace ASI\Models\QuizToUser;
 
-use Phalcon\Mvc\Model;
+use ASI\Models\ModelBase;
 
-class QuizToUser extends Model
+class QuizToUser extends ModelBase
 {
 
     public $quizId;
@@ -14,10 +14,6 @@ class QuizToUser extends Model
     const STATUS_NEW = 'new';
     const STATUS_DONE = 'done';
 
-    public function initialize()
-    {
-        $this->setSchema("asi");
-    }
 
     public function getSource()
     {
