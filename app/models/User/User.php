@@ -44,8 +44,8 @@ class User extends Model
     public static function register($data)
     {
         $user = new User();
-        $user->firstName = $data['first-name'];
-        $user->lastName = $data['last-name'];
+        $user->firstName = addslashes($data['first-name']);
+        $user->lastName = addslashes($data['last-name']);
         $user->email = $data['email'];
         $user->roles = 'student';
         $user->password = password_hash($data['password'], PASSWORD_BCRYPT);

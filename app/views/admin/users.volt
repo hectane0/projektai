@@ -14,9 +14,9 @@
         {% for user in users %}
         <tr>
             <td>{{ user.id }}</td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td><a href="{{ url(["for" : "admin-user", "id" : user.id]) }}">Opcje</a></td>
+            <td>{{ user.firstName|escape }}</td>
+            <td>{{ user.lastName|escape }}</td>
+            <td><a href="{{ url(["for" : "admin-user", "id" : user.id]) }}">Więcej</a></td>
         </tr>
         {% endfor %}
         </tbody>

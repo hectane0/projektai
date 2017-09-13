@@ -74,7 +74,7 @@ class PanelController extends ControllerBase
         $this->show404(empty($quiz) || !$quiz->canSolve($userId));
 
         $questions = $quiz->start($userId);
-        $duration = 15; //minutes
+        $duration = $quiz->duration; //minutes
 
         $finishTime = $this->session->get('current_quiz')['start_time'] + $duration*60;
 
@@ -87,6 +87,8 @@ class PanelController extends ControllerBase
         $currentQuiz = $this->session->get('current_quiz', null);
         $this->show404(empty($currentQuiz) || !$this->request->isPost());
 
+        $quiz = \ASI\Models\Quiz\Quiz::findFirst($currentQuiz['id']);
+
         $post = array_map('intval',  $this->request->getPost());
 
         $score = count(array_intersect($post, $currentQuiz['correct_answers']));
@@ -97,7 +99,7 @@ class PanelController extends ControllerBase
         $result = Result::get(User::getCurrentUserId(), $currentQuiz['id']);
         $this->show404(empty($result));
 
-        $finishTime = $currentQuiz['time'] + 15*60 + 3;
+        $finishTime = $currentQuiz['start_time'] + $quiz->duration*60 + 3;
         $now = time();
 
         if ($now > $finishTime) {

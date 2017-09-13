@@ -85,4 +85,14 @@ class Result extends Model
         $userId = User::getCurrentUserId();
         return self::findFirst("userId = '$userId' AND status = 'in_progress'");
     }
+
+    public static function getFullResults()
+    {
+        $sql = "SELECT asi.user.firstName, asi.user.lastName, asi.quiz.name, asi.result.result, asi.result.status, asi.result.finishedAt, asi.result.info FROM asi.result 
+                INNER JOIN asi.user ON asi.result.userId = asi.user.id 
+                INNER JOIN asi.quiz ON asi.result.quizId = asi.quiz.id;";
+        $result = Di::getDefault()->getShared('db')->fetchAll($sql);
+
+        return $result;
+    }
 }

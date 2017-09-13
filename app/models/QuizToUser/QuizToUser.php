@@ -43,6 +43,7 @@ class QuizToUser extends Model
             $entry = new QuizToUser();
             $entry->userId = $user;
             $entry->quizId = $quizId;
+            $entry->status = self::STATUS_NEW;
 
             $entry->save();
         }

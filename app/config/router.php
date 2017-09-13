@@ -146,6 +146,18 @@ $router->add("/admin/user/([0-9]+)", [
     'id' => 1,
 ])->setName("admin-user");
 
+$router->add("/admin/results", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'index',
+    'action' => 'results',
+])->setName("admin-results");
+
+$router->add("/admin/quiz", [
+    'namespace'  => 'ASI\Controllers\Admin',
+    'controller' => 'index',
+    'action' => 'quiz',
+])->setName("admin-quiz");
+
 $router->add("/ajax/add-question", [
     'controller' => 'ajax',
     'action' => 'addQuestion',

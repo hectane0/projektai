@@ -59,6 +59,7 @@ class Quiz extends Model
         $quiz->name = $step1['name'];
         $quiz->type = $step1['type'];
         $quiz->category = $step1['category'];
+        $quiz->duration = $step1['duration'];
         $quiz->questions = json_encode($step2['questions']);
         $quiz->users = $quiz->type == 'closed' ? json_encode($step3['users']) : null;
         $quiz->createdAt = date('Y-m-d H:i:s');
@@ -94,6 +95,11 @@ class Quiz extends Model
 
     public function canSolve($userId)
     {
+        if (!empty($quiz = Result::checkInProgressQuiz())) {
+            if ($quiz->quizId != $this->id)
+            die("Masz niedokończony quiz :[");
+        }
+
         if ($this->type == self::STATUS_PUBLIC) {
             if (Result::isDone($this->id, $userId)) {
                 return false;

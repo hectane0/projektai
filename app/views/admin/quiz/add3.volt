@@ -8,7 +8,7 @@
 
             <select title="Pytania do quizu" name="users[]" class="select2" multiple>
                 {% for user in users %}
-                    <option value="{{ user.id }}">{{ user.firstName }} {{ user.lastName }}</option>
+                    <option value="{{ user.id }}">{{ user.firstName|escape }} {{ user.lastName|escape }}</option>
                 {% endfor %}
             </select>
 

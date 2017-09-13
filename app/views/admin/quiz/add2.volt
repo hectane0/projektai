@@ -8,7 +8,7 @@
 
                 <select title="Pytania do quizu" name="questions[]" class="select2" multiple>
                     {% for question in questions %}
-                        <option value="{{ question.id }}">{{ question.question }}</option>
+                        <option value="{{ question.id }}">{{ question.question|escape }}</option>
                     {% endfor %}
                 </select>
 

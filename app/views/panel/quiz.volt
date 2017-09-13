@@ -58,12 +58,12 @@
                 <div class="row">
                     <div class="container question-box">
                         <div class="question">
-                            {{ question['question'] }}
+                            {{ question['question']|escape }}
                         </div>
                         <div class="answers-box">
                             {% for key, answer in question['answers'] %}
                                 <div class="radio">
-                                    <label><input type="radio" value="{{ key }}" name="{{ question['id'] }}">{{ answer }}</label>
+                                    <label><input type="radio" value="{{ key }}" name="{{ question['id'] }}">{{ answer|escape }}</label>
                                 </div>
                             {% endfor %}
                         </div>

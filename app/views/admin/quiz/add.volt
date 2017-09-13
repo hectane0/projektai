@@ -35,6 +35,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="password">Czas trwania (minuty)</label>
+                    {{ form.render("duration", {"class": "form-control", "id": "duration", "autofocus" : true, "required" : true}) }}
+
+                    {% for message in form.getMessagesFor("duration") %}
+                        <div class="error aleft">{{ message }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
                     <button type="submit" id="mew-quiz-next" class="btn btn-primary">Dalej</button>
                 </div>
 
