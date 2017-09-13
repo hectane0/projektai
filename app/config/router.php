@@ -168,6 +168,11 @@ $router->add("/ajax/last-questions", [
     'action' => 'lastQuestions',
 ])->setName("ajax-last-questions");
 
+$router->add("/ajax/check-if-logged", [
+    'controller' => 'ajax',
+    'action' => 'checkIfLogged',
+])->setName("ajax-check-if-logged");
+
 $router->notFound([
     'controller' => 'error',
     'action' => 'error404',

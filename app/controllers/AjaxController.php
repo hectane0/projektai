@@ -73,5 +73,13 @@ class AjaxController extends ControllerBase
 
         return $html;
     }
-}
 
+    public function checkIfLoggedAction()
+    {
+        $user = User::getCurrentUser();
+        if (!empty($user)) {
+            return json_encode(["logged" => true, "redirect" => $user->getDefaultPage()]);
+        }
+        return json_encode(["logged" => false]);
+    }
+}

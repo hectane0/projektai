@@ -14,7 +14,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a class="page-scroll cpointer" data-toggle="modal" data-target="#loginModal">Login</a>
+                            <a class="page-scroll cpointer" id="login-button" data-toggle="modal" data-target="#loginModal">Login</a>
                         </li>
                     </ul>
                 </div>

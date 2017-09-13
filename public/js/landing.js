@@ -86,4 +86,20 @@ $("#modal-log-in").click(function () {
 
 })
 
+
+    $("#login-button").on("click", function () {
+        $.ajax({
+            url: "/ajax/check-if-logged",
+            method: "POST",
+            dataType: "json",
+            cache: false,
+
+            success: function(result){
+                if (result.logged) {
+                    window.location.replace(result.redirect);
+                }
+            }
+        });
+    })
+
 })(jQuery); // End of use strict

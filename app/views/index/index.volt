@@ -29,7 +29,7 @@
                             {{ link_to(["for": "register"], "Rejestracja") }}
                         </li>
                         <li>
-                            <a class="page-scroll cpointer" data-toggle="modal" data-target="#loginModal">Login</a>
+                            <a class="page-scroll cpointer" id="login-button" data-toggle="modal" data-target="#loginModal">Login</a>
                         </li>
                     </ul>
                 </div>
