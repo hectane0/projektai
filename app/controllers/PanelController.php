@@ -30,9 +30,11 @@ class PanelController extends ControllerBase
 
     public function indexAction()
     {
+        $inProgress = Result::checkInProgressQuiz();
         $public = Quiz::getCountNewPublicQuizzes();
         $invited = Quiz::getCountNewInvitedQuizzes();
 
+        $this->view->setVar('inProgress', $inProgress);
         $this->view->setVar('public', $public);
         $this->view->setVar('invited', $invited);
         $this->view->pick('panel/index');
@@ -50,6 +52,9 @@ class PanelController extends ControllerBase
 
     public function finishedAction()
     {
+        $results = Result::getDoneQuizzesData();
+
+        $this->view->setVar('results', $results);
         $this->view->pick('panel/finished');
     }
 
@@ -69,25 +74,36 @@ class PanelController extends ControllerBase
         $this->show404(empty($quiz) || !$quiz->canSolve($userId));
 
         $questions = $quiz->start($userId);
+        $duration = 15; //minutes
 
+        $finishTime = $this->session->get('current_quiz')['start_time'] + $duration*60;
 
+        $this->view->setVar('finishTime', $finishTime);
         $this->view->setVar('questions', $questions);
     }
 
     public function finishAction()
     {
         $currentQuiz = $this->session->get('current_quiz', null);
-        $this->show404(empty($currentQuiz) || empty($this->request->getPort()));
+        $this->show404(empty($currentQuiz) || !$this->request->isPost());
 
+        $post = array_map('intval',  $this->request->getPost());
 
-        // @TODO: intersect źle działa :(
-        $score = count(array_intersect($this->request->getPost(), $currentQuiz['correct_answers']));
+        $score = count(array_intersect($post, $currentQuiz['correct_answers']));
         $scoreOn = count($this->session->get('current_quiz')['correct_answers']);
 
         $rawScore = $score . "/" . $scoreOn;
 
         $result = Result::get(User::getCurrentUserId(), $currentQuiz['id']);
         $this->show404(empty($result));
+
+        $finishTime = $currentQuiz['time'] + 15*60 + 3;
+        $now = time();
+
+        if ($now > $finishTime) {
+            $rawScore = "0";
+            $result->info = "Przekroczono limit czasu";
+        }
 
         $result->status = Result::STATUS_DONE;
         $result->result = $rawScore;

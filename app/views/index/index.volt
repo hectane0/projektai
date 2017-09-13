@@ -180,7 +180,7 @@
                     <div class="col-lg-4 text-center">
                         <p><i class="fa fa-book fa-3x sr-contact"></i></p>
                         <div>Paulina Grela</div>
-                        <div>1223XX</div>
+                        <div>122329</div>
                     </div>
                 </div>
             </div>

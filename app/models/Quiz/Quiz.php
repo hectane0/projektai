@@ -18,6 +18,7 @@ class Quiz extends Model
     public $category;
     public $questions;
     public $users;
+    public $duration;
     public $createdAt;
     public $userId;
 
@@ -112,6 +113,11 @@ class Quiz extends Model
     }
 
     public function start($userId) {
+
+        if ($questions = $this->restoreFromSession()) {
+            return $questions;
+        }
+
         Result::start($this->id, $userId);
 
         $ids = json_decode($this->questions);
@@ -137,5 +143,16 @@ class Quiz extends Model
         Di::getDefault()->getShared('session')->set('current_quiz', $sessionData);
 
         return $preparedQuestions;
+    }
+
+    private function restoreFromSession()
+    {
+        $data = Di::getDefault()->getShared('session')->get('current_quiz');
+
+        if (empty($data)) {
+            return false;
+        }
+
+        return $data['questions'];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace ASI\Models\Result;
 
+use ASI\Models\User\User;
+use Phalcon\Di;
 use Phalcon\Mvc\Model;
 
 class Result extends Model
@@ -13,6 +15,7 @@ class Result extends Model
     public $status;
     public $result;
     public $finishedAt;
+    public $info;
 
     const STATUS_IN_PROGRESS = 'in_progress';
     const STATUS_DONE = 'done';
@@ -65,4 +68,21 @@ class Result extends Model
         return self::findFirst("quizId = '$quizId' AND userId = '$userId'");
     }
 
+    public static function getDoneQuizzesData($userId = null)
+    {
+        if ($userId == null) {
+            $userId = User::getCurrentUserId();
+        }
+
+        $sql = "SELECT * FROM asi.result AS result INNER JOIN asi.quiz AS quiz ON result.quizId = quiz.id WHERE result.status = 'done' AND result.userId = $userId";
+        $results = Di::getDefault()->getShared('db')->fetchAll($sql);
+
+        return $results;
+    }
+
+    public static function checkInProgressQuiz()
+    {
+        $userId = User::getCurrentUserId();
+        return self::findFirst("userId = '$userId' AND status = 'in_progress'");
+    }
 }

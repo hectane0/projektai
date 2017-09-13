@@ -4,12 +4,45 @@
 
 <div class="row">
     <div class="container">
-        Info
+        <div class="time-counter">
+            <div>Pozostało czasu: <b><span id="time"></span></b></div>
+            <script>
+                $(document).ready(function () {
+                    function startTimer(finishTime, display) {
+                        var minutes, seconds;
+                        setInterval(function () {
+
+                            var dateTime = Date.now();
+                            var timestamp = Math.floor(dateTime / 1000);
+
+                            var timer = finishTime - timestamp;
+
+                            minutes = parseInt(timer / 60, 10);
+                            seconds = parseInt(timer % 60, 10);
+
+                            minutes = minutes < 10 ? "0" + minutes : minutes;
+                            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                            display.text(minutes + ":" + seconds);
+
+                            if (--timer < 0) {
+                                timer = finishTime;
+                                $("#quiz-form").submit();
+                            }
+                        }, 1000);
+                    }
+
+                    $(function ($) {
+                        startTimer({{ finishTime }}, $('#time'));
+                    });
+                })
+            </script>
+        </div>
     </div>
 </div>
 
 <div id="first-slider">
-    <form action="{{ url(["for": "panel-quiz-finish"]) }}" method="post">
+    <form action="{{ url(["for": "panel-quiz-finish"]) }}" method="post" id="quiz-form">
     <div id="carousel-example-generic" class="carousel slide carousel-fade">
         <ol class="carousel-indicators">
 

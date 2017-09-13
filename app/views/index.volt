@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
         {% block extraHead %}{% endblock %}
         {{ assets.outputCss() }}
+        <script src="/vendor/jquery/jquery.min.js"></script>
     </head>
     <body id="page-top" class="home">
 
@@ -24,7 +25,7 @@
         </div>
     </div>
 
-        <script src="/vendor/jquery/jquery.min.js"></script>
+
         <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
         {% block extraJs %}{% endblock %}
         {{ assets.outputJs() }}
