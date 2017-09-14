@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="error">
-    <div class="error-code m-b-10 m-t-20">404<i class="fa fa-warning"></i></div>
+    <div class="error-code m-b-10 m-t-20">404</div>
     <hr>
     <h3 class="font-bold">Nie znaleziono strony</h3>
 

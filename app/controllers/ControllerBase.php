@@ -22,11 +22,11 @@ class ControllerBase extends Controller
     public function show404($condition = true)
     {
         if ($condition) {
-            $this->dispatcher->forward([
-                'namespace'  => 'ASI\Controllers',
-                'controller' => 'error',
-                'action' => 'error404',
-            ]); die;
+            $this->response->setStatusCode(404, 'Not Found');
+            $this->view->pick('error/error404');
+            $this->view->render('error', 'error404');
+            $this->response->send();
+            die;
         }
     }
 

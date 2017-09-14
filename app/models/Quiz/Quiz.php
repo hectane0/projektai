@@ -91,11 +91,6 @@ class Quiz extends ModelBase
 
     public function canSolve($userId)
     {
-        if (!empty($quiz = Result::checkInProgressQuiz())) {
-            if ($quiz->quizId != $this->id)
-            die("Masz niedokończony quiz :[");
-        }
-
         if ($this->type == self::STATUS_PUBLIC) {
             if (Result::isDone($this->id, $userId)) {
                 return false;

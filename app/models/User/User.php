@@ -4,7 +4,6 @@ namespace ASI\Models\User;
 
 use ASI\Models\ModelBase;
 use Phalcon\Di;
-use Phalcon\Exception;
 
 class User extends ModelBase
 {
@@ -39,25 +38,17 @@ class User extends ModelBase
 
     public static function register($data)
     {
-        try {
-            $user = new User();
-            $user->firstName = addslashes($data['first-name']);
-            $user->lastName = addslashes($data['last-name']);
-            $user->email = $data['email'];
-            $user->roles = 'student';
-            $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
-            $user->createdAt = date('Y-m-d H:i:s');
+        $user = new User();
+        $user->firstName = addslashes($data['first-name']);
+        $user->lastName = addslashes($data['last-name']);
+        $user->email = $data['email'];
+        $user->roles = 'student';
+        $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
+        $user->createdAt = date('Y-m-d H:i:s');
 
-            $user->save();
+        $user->save();
 
-            foreach ($user->getMessages() as $message) {
-                file_put_contents(BASE_PATH . '/cache/error.txt', $message, FILE_APPEND);
-            }
-
-            return boolval($user->id);
-        } catch (Exception $e) {
-            file_put_contents(BASE_PATH . '/cache/error.txt', $e, FILE_APPEND);
-        }
+        return boolval($user->id);
     }
 
     public static function getByEmail($email) {

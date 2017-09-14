@@ -73,8 +73,16 @@ class PanelController extends ControllerBase
         }
         $this->show404(empty($quiz) || !$quiz->canSolve($userId));
 
+        if (!empty($inProgress = Result::checkInProgressQuiz())) {
+            if ($inProgress->quizId != $quiz->id) {
+                $this->view->pick('panel/undone');
+                $this->view->render('panel', 'quiz');
+                die;
+            }
+        }
+
         $questions = $quiz->start($userId);
-        $duration = $quiz->duration; //minutes
+        $duration = $quiz->duration;
 
         $finishTime = $this->session->get('current_quiz')['start_time'] + $duration*60;
 
